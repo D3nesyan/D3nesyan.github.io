@@ -1,0 +1,210 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>跟小伙伴开一个 Minecraft 服务器！ | D3nesyan&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://D3nesyan.github.io/favicon.ico?v=1700038929745">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://D3nesyan.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            D3nesyan&#39;s Blog
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/friends" class="menu gt-a-link">
+                    友链
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1700038929745"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    跟小伙伴开一个 Minecraft 服务器！
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-08-29 ·
+                    </time>
+                    
+                        <a href="https://D3nesyan.github.io/tag/udZgyPSUm/" class="post-tags">
+                            # minecraft
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>众所周知，打联机游戏是在宿舍中不可或缺的一环。</p>
+<p>本文将会尽可能简单地讲解如何开一个 Minecraft 服务器。</p>
+<!-- more -->
+<p>本教程使用设备：Windows 11</p>
+<h2 id="请选择你的-英雄版本">请选择你的 <s>英雄</s>版本</h2>
+<p>首先，要确定你想在服务器里面玩什么，根据自己的需要选择合适的种类。常见的客户端有：<strong>Paper, spigot, forge, fabric.</strong></p>
+<p>举个例子：假如你想在玩暮色森林，这个 mod 暂时不支持 1.19.4 的 fabric, 那么你只能安装相对应的 forge 的服务器端。</p>
+<p>过程几乎都大同小异。出于个人喜好，此处将使用 <strong>fabric</strong> 作为例子。</p>
+<h2 id="服务端启动">服务端，启动！</h2>
+<p>在启动之前，确定好我们的电脑上满足需要的相关依赖。如 java。并将其加入相应的 PATH 当中。只要你在 Powershell 中可以直接运行 java 指令，一般来说就是成功了</p>
+<p>首先，我们将从官网下载好的服务器 jar 文件放在一个独立的文件夹内，将其重命名为 fabric-server.jar。然后右键创建一个 bat 脚本文件，来方便我们启动服务器。</p>
+<p>此处我们将该文件命名为 launch.bat。（记得开启文件后缀编辑）</p>
+<p>编辑文件，输入下面的命令行</p>
+<pre><code>@ECHO OFF
+java -Xms2G -Xmx2G -jar fabric-server.jar --nogui
+pause
+</code></pre>
+<p>然后退出文件编辑，双击 launch.bat 即可启动客户端。</p>
+<p>启动客户端后，按照终端中显示的内容操作，如同意 EULA 等等。然后就可以在 server.properties 文件中修改相关的参数，以及在 mod/plugin 文件夹内加入相关的插件模块了。</p>
+<h2 id="同一局域网下怎么让舍友连接你的服务器">同一局域网下，怎么让舍友连接你的服务器？</h2>
+<p>众所周知的是，当在你自己的电脑上启动服务器客户端之后，只要在游戏中输入 127.0.0.1:25565 这个 IP 就可以进入游戏了。</p>
+<p>而当舍友需要加入游戏时，你便需要知道你的电脑在内网下的 IP 地址。很简单，我们只要打开 <strong>设置-&gt;网络和Internet-&gt;以太网/WLAN</strong>，找到 IPv4 地址便能看到内网下的 IP 了。</p>
+<figure data-type="image" tabindex="1"><img src="https://D3nesyan.github.io/post-images/1693319407024.jpg" alt="" loading="lazy"></figure>
+<p>然后舍友的 IP 就是你内网IP:25565。如图中例子，就是 192.168.5.141:25565</p>
+<p>当然，也许你安装了 geysermc 插件来兼容 Bedrock 版本的 Minecraft, 只需要将端口号换成 19132 就行了。</p>
+<h2 id="放假了我舍友想在家里陪我玩怎么办">放假了，我舍友想在家里陪我玩，怎么办？</h2>
+<p>想办法公网 <strong>IPv4 地址</strong> 或者 <strong>使用第三方 FRP 软件(e.g. SakuraFrp)</strong>。详细方法请见 Bing。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://D3nesyan.github.io/post/arrowos-lavender-flash-tutorial/" class="post-title gt-a-link">
+                    ArrowOS lavender flash tutorial
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">NoTech Otaku</div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/D3nesyan" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://D3nesyan.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

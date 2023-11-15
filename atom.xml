@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://D3nesyan.github.io</id>
+    <title>D3nesyan&apos;s Blog</title>
+    <updated>2023-11-15T09:02:12.448Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://D3nesyan.github.io"/>
+    <link rel="self" href="https://D3nesyan.github.io/atom.xml"/>
+    <subtitle>NoTech Otaku</subtitle>
+    <logo>https://D3nesyan.github.io/images/avatar.png</logo>
+    <icon>https://D3nesyan.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2023, D3nesyan&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[[请勿转载]🐔🧱校园网使用攻略]]></title>
+        <id>https://D3nesyan.github.io/post/xiao-yuan-wang-shi-yong-gong-lue/</id>
+        <link href="https://D3nesyan.github.io/post/xiao-yuan-wang-shi-yong-gong-lue/">
+        </link>
+        <updated>2023-11-10T07:44:17.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="为了使方法不被和谐请勿转载本文章链接特别是百度贴吧新浪微博大型相关-qq-和-微信-群聊等">为了使方法不被和谐，请勿转载本文章链接！特别是百度贴吧，新浪微博，大型相关 QQ 和 微信 群聊等 ！</h1>
+<blockquote>
+<p>你说得对，但是检测出非实名上网行为，系统将自动降速10分钟，请立即停止违规上网！根据《中华人民共和国网络安全法》、公安部第82号令等规定，为保障校园网的安全，接入校园网必须进行实名认证。账号持有人须对账号身份信息的真实性、安全性负责。</p>
+</blockquote>
+<p>所谓上有政策，下有对策。本篇教程将会讲述如何在🐔🧱继续使用路由器进行网上冲浪。</p>
+<p>本篇教程将会对 <strong>绕过多设备检测</strong> 和 <strong>夜间断网期间认证上网</strong> 两方面进行讲解</p>
+<h2 id="文章使用路由器系统">文章使用路由器系统</h2>
+<ul>
+<li>Hanwckf 的 <a href="https://cmi.hanwckf.top/p/immortalwrt-mt798x/">Immortalwrt-mt798x</a> 为例</li>
+</ul>
+<h2 id="多设备检测">多设备检测</h2>
+<p>首先能明确的是，校园网使用的并不是对 User-Agent 的检测，也不是 IPID. TTL 或者 时钟偏移。因为经过一系列针对这些的对策之后，使用路由器仍然会被检测。我们可以大胆猜测，<strong>学校不惜耗费大量算力，正在使用 DPI 深度检测。</strong></p>
+<p>然而，作为大学生，我们有一大批专业有使用 Linux 的硬性需求。而使用 Linux 一般人不会选择装双系统或者另外购买机器。大多数都是正在使用如 Vmware 之类的虚拟机。而检测多设备就要避免对这种情况进行误封。经过测试，连墙上的 JMU-STU 后再经过热点广播是一个可行的选择。我们可以将这种解决方法放在路由器上，也就是桥接中继 JMU-STU.</p>
+<h3 id="无线桥接">无线桥接</h3>
+<p>拔掉连接在墙上网口的网线</p>
+<figure data-type="image" tabindex="1"><img src="https://D3nesyan.github.io/post-images/1699602362692.jpg" alt="" loading="lazy"></figure>
+<p>点开网络-&gt;无线</p>
+<figure data-type="image" tabindex="2"><img src="https://D3nesyan.github.io/post-images/1699602418527.jpg" alt="" loading="lazy"></figure>
+<p>可以看到，上面 apcli 是 2.4GHz WiFi，我们选下面的 apclix (5GHz WiFi) ，点击配置</p>
+<figure data-type="image" tabindex="3"><img src="https://D3nesyan.github.io/post-images/1699602447381.jpg" alt="" loading="lazy"></figure>
+<p>扫描无线网络，选择信号最好的 JMU-STU</p>
+<figure data-type="image" tabindex="4"><img src="https://D3nesyan.github.io/post-images/1699621874785.jpg" alt="" loading="lazy"></figure>
+<p>保存并应用</p>
+<p>打开网络-&gt;接口，确信 WAN 和 WAN6 都是使用的 apclix0</p>
+<figure data-type="image" tabindex="5"><img src="https://D3nesyan.github.io/post-images/1699602526733.jpg" alt="" loading="lazy"></figure>
+<p>然后打开 10.8.2.2, 直接进行认证即可。Speedtest 可跑到 60-70M，CounterStrike 和 王者荣耀延迟和丢包均在正常水平</p>
+<blockquote>
+<p>如果是小米路由器的话，直接在连接方式里选择无线中继即可一键（几乎是）设置。详细可以自己搜。</p>
+</blockquote>
+<h2 id="断网期间认证上网">断网期间认证上网</h2>
+<blockquote>
+<p>Tips：小米路由器默认固件无法完成此步骤</p>
+</blockquote>
+<p>众所周知，我们🐔🧱是分上网区域的。有需要按照断网时间断网的宿舍区域，也有 <strong>不会断网的办公区域</strong> 。在知道这一点后，就自然有一个方法：假装自己是在不断网办公区域上网来躲过&quot;不在认证的时段内&quot;。经过尝试，发现使用 <strong>静态 IP</strong> <strong>竟然</strong> 可以达到预期的效果。</p>
+<p>首先，你需要找到一个不断网办公区域的 IP 地址（自己想办法找）</p>
+<p>打开路由器的管理页面，进入 网络-&gt;接口。打开编辑 WAN 接口</p>
+<figure data-type="image" tabindex="6"><img src="https://D3nesyan.github.io/post-images/1699611769250.jpg" alt="" loading="lazy"></figure>
+<p>将默认的 <strong>DHCP 客户端</strong> 更改为 <strong>静态地址</strong></p>
+<figure data-type="image" tabindex="7"><img src="https://D3nesyan.github.io/post-images/1699621741474.jpg" alt="" loading="lazy"></figure>
+<p>如图，填入相关参数：<br>
+IPv4 地址：填不断网区域的内网 IPv4 地址(172.AA.xx.xx)<br>
+IPv4 子网掩码：255.255.0.0<br>
+IPv4 网关：172.AA.0.1(AA意思是和 IPv4 地址一样的AA)</p>
+<figure data-type="image" tabindex="8"><img src="https://D3nesyan.github.io/post-images/1699612333565.jpg" alt="" loading="lazy"></figure>
+<p>保存并应用，进入10.8.2.2即可在断网期间成功认证。</p>
+<h2 id="one-more-thing">One More Thing</h2>
+<p>假如我没有路由器，或者我不会刷 Openwrt，我想直接用 JMU-STU 在断网期间上网，怎么办？<br>
+直接连上 JMU_STU 然后配置静态 IP 就可以啦！</p>
+<h3 id="windows-步骤看图连上-jmu-stu-打开设置">Windows: 步骤看图，连上 JMU-STU, 打开设置</h3>
+<figure data-type="image" tabindex="9"><img src="https://D3nesyan.github.io/post-images/1699612591594.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://D3nesyan.github.io/post-images/1699612664484.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://D3nesyan.github.io/post-images/1699612722060.jpg" alt="" loading="lazy"></figure>
+<h3 id="iosipados-打开设置无线局域网jmu-stu旁边的设置小按钮配置-ipv4">iOS/iPadOS: 打开设置，无线局域网，JMU-STU旁边的设置小按钮，配置 IPv4</h3>
+<figure data-type="image" tabindex="12"><img src="https://D3nesyan.github.io/post-images/1699612935306.jpg" alt="" loading="lazy"></figure>
+<p>配置下 DNS, 随便填个</p>
+<figure data-type="image" tabindex="13"><img src="https://D3nesyan.github.io/post-images/1699612957905.jpg" alt="" loading="lazy"></figure>
+<p>记得存储</p>
+<h3 id="android-乱七八糟的系统太多-其实道理都一样自己试试-这里就不说了">Android: 乱七八糟的系统太多。其实道理都一样，自己试试。这里就不说了。</h3>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>经过数天的使用，可以发现在一直认证状态下，持续一到三天，可能会产生原因未知的网络卡顿现象。退出认证，重启路由器后等待一段时间再认证，就可以回到正常的速度和延迟。有条件的话可以自己写个 Crontab 来进行定时重启和认证什么的。</li>
+<li>推荐买性能差不多的路由器来进行无线中继，以保证网络速度。我个人推荐方便刷 OpenWRT 的搭载 MT7981 的路由器，然后安装 <a href="https://cmi.hanwckf.top/p/immortalwrt-mt798x/">Immortalwrt-mt798x</a>。正常价格都是一百多。</li>
+<li>不要来这跟我扯贵的要死的 5G CPE。一般的学生都是直接用的校园网。如果你强行捧一踩一，我就直接认为你是运营商的狗，先把校园网搞一人一号，再把学生骗去搞 CPE，两头吃。</li>
+</ul>
+<h1 id="为了使方法不被和谐请勿转载本文章链接特别是百度贴吧新浪微博大型相关-qq-和-微信-群聊等-2">为了使方法不被和谐，请勿转载本文章链接！特别是百度贴吧，新浪微博，大型相关 QQ 和 微信 群聊等 ！</h1>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[[已过时]🐔🧱校园网自动认证以及断网重连的实现教程]]></title>
+        <id>https://D3nesyan.github.io/post/ji-mei-da-xue-xiao-yuan-wang-zi-dong-lian-jie-yi-ji-duan-wang-chong-lian-de-shi-xian-jiao-cheng/</id>
+        <link href="https://D3nesyan.github.io/post/ji-mei-da-xue-xiao-yuan-wang-zi-dong-lian-jie-yi-ji-duan-wang-chong-lian-de-shi-xian-jiao-cheng/">
+        </link>
+        <updated>2023-09-07T03:32:06.000Z</updated>
+        <summary type="html"><![CDATA[<h1 id="前情提要">前情提要</h1>
+<p>搞自动认证，主要是为了早上不被早早地叫起来开 WiFi，解放双手...</p>
+]]></summary>
+        <content type="html"><![CDATA[<h1 id="前情提要">前情提要</h1>
+<p>搞自动认证，主要是为了早上不被早早地叫起来开 WiFi，解放双手...</p>
+<!-- more -->
+<p>在开始之前，我们需要做以下工作：</p>
+<ul>
+<li>
+<p>拥有一台支持 OpenWRT 且已经刷入的路由器（大多数搭载 MT7981 的路由器都能刷 openwrt. 本人是用的 H3C NX30PRO, 才百来块钱）</p>
+</li>
+<li>
+<p>拥有一台正在使用 Linux/Mac/WSL 的设备</p>
+</li>
+</ul>
+<p>本教程将会使用 <strong>WSL</strong> 作为编译示范（Linux 也一样）</p>
+<p>好了，让我们开始吧！</p>
+<h2 id="下载并编译相关的源码">下载并编译相关的源码</h2>
+<h3 id="如果你也是-mt7981-系路由器或者路由器搭载其他-cortex-a53-soc-可以直接去下面链接里的-release-页下载编译好了的-ipk-包并跳过编译步骤"><strong>如果你也是 MT7981 系路由器或者路由器搭载其他 cortex-a53 soc, 可以直接去下面链接里的 release 页下载编译好了的 ipk 包，并跳过编译步骤</strong></h3>
+<p><a href="https://github.com/D3nesyan/jmuEportalAuth/releases">luci-app-jmusupplicant</a><br>
+<a href="https://github.com/D3nesyan/jmuSupplicant-OpenWrt-ipk/releases">jmusupplicant</a></p>
+<pre><code class="language-bash"># 用 ImmortalWRT 编译作为例子
+$ git clone https://github.com/immortalwrt/immortalwrt.git
+# 进入文件夹
+$ cd immortalwrt
+# 下载需要的几个 ipk 源码
+$ cd package
+$ git clone https://github.com/D3nesyan/jmuSupplicant-OpenWrt-ipk.git jmusupplicant
+$ git clone https://github.com/D3nesyan/luci-app-jmusupplicant.git
+$ cd ..
+# 根据路由器进行相应设置
+$ make menuconfig
+# 在 luci -&gt; application 选中插件(luci-app-jmusupplicant)，开始编译
+$ make package/luci-app-jmusupplicant/compile V=s
+</code></pre>
+<p>通过运行上述指令，在 <strong>immortalwrt/bin</strong> 中搜索 <strong>&quot;jmu&quot;</strong> 关键词，我们便可以得到 2 个 ipk 文件.</p>
+<h2 id="安装插件">安装插件</h2>
+<p>进入路由器的管理页面，点击 <strong>软件包-&gt;上传软件包</strong>，依次安装 jmusupplicant 和 luci-app-jmusupplicant.</p>
+<h2 id="开始使用">开始使用</h2>
+<p>进入插件设置页，就可以开始使用啦！<br>
+<img src="https://D3nesyan.github.io/post-images/1693238737607.jpg" alt="" loading="lazy"></p>
+<h2 id="如何获得无断网办公区域的-ip-地址">如何获得无断网办公区域的 IP 地址？</h2>
+<p>其实在校园网自助服务系统中，打开网络信息，就可以看到过去使用校园网时的 IP 地址。</p>
+<p>一般来说，在办公楼机房之类的地方的 IP 地址都是属于无断网办公区域。</p>
+<p>如下图，可以直接填写 <strong>办公不限制</strong> 所对应的 IPv4 地址<br>
+<img src="https://D3nesyan.github.io/post-images/1693388003068.jpg" alt="" loading="lazy"></p>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>勾选 <strong>&quot;自动重连&quot;</strong> 之后，插件就会通过 <strong>crontab</strong> 中配置的内容来定时执行相关任务。如果你不喜欢或者默认的配置不适用，可以直接进 <strong>crontab</strong> 进行配置修改。</li>
+<li>断网后的重连可能有几十次失败，这属于正常现象。（<s>经过多次尝试后，我发现只要重连次数够多，总会连上的</s></li>
+<li>断网后只能连接教育网，无法连接运营商的宽带网。</li>
+<li>如果使用本插件 无法登陆校园网自助管理界面 以及 无法进入学校内网网站 属于正常现象（<s>我也不知道为什么</s></li>
+</ul>
+<h2 id="感谢">感谢</h2>
+<ul>
+<li>来自于 <a href="https://github.com/openjmu">OpenJMU</a> 的各种源码</li>
+<li>Jmusupplicant 的作者 <a href="https://github.com/ShanQincheng">ShanQincheng</a></li>
+<li>JmuEportalAuth 的作者 <a href="https://github.com/aiamadeus">暗云</a></li>
+<li>luci-app-jmusupplicant 基于 luci-app-mentohust 源码进行二次开发</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[跟小伙伴开一个 Minecraft 服务器！]]></title>
+        <id>https://D3nesyan.github.io/post/gen-xiao-huo-ban-kai-yi-ge-minecraft-fu-wu-qi/</id>
+        <link href="https://D3nesyan.github.io/post/gen-xiao-huo-ban-kai-yi-ge-minecraft-fu-wu-qi/">
+        </link>
+        <updated>2023-08-29T14:12:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>众所周知，打联机游戏是在宿舍中不可或缺的一环。</p>
+<p>本文将会尽可能简单地讲解如何开一个 Minecraft 服务器。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>众所周知，打联机游戏是在宿舍中不可或缺的一环。</p>
+<p>本文将会尽可能简单地讲解如何开一个 Minecraft 服务器。</p>
+<!-- more -->
+<p>本教程使用设备：Windows 11</p>
+<h2 id="请选择你的-英雄版本">请选择你的 <s>英雄</s>版本</h2>
+<p>首先，要确定你想在服务器里面玩什么，根据自己的需要选择合适的种类。常见的客户端有：<strong>Paper, spigot, forge, fabric.</strong></p>
+<p>举个例子：假如你想在玩暮色森林，这个 mod 暂时不支持 1.19.4 的 fabric, 那么你只能安装相对应的 forge 的服务器端。</p>
+<p>过程几乎都大同小异。出于个人喜好，此处将使用 <strong>fabric</strong> 作为例子。</p>
+<h2 id="服务端启动">服务端，启动！</h2>
+<p>在启动之前，确定好我们的电脑上满足需要的相关依赖。如 java。并将其加入相应的 PATH 当中。只要你在 Powershell 中可以直接运行 java 指令，一般来说就是成功了</p>
+<p>首先，我们将从官网下载好的服务器 jar 文件放在一个独立的文件夹内，将其重命名为 fabric-server.jar。然后右键创建一个 bat 脚本文件，来方便我们启动服务器。</p>
+<p>此处我们将该文件命名为 launch.bat。（记得开启文件后缀编辑）</p>
+<p>编辑文件，输入下面的命令行</p>
+<pre><code>@ECHO OFF
+java -Xms2G -Xmx2G -jar fabric-server.jar --nogui
+pause
+</code></pre>
+<p>然后退出文件编辑，双击 launch.bat 即可启动客户端。</p>
+<p>启动客户端后，按照终端中显示的内容操作，如同意 EULA 等等。然后就可以在 server.properties 文件中修改相关的参数，以及在 mod/plugin 文件夹内加入相关的插件模块了。</p>
+<h2 id="同一局域网下怎么让舍友连接你的服务器">同一局域网下，怎么让舍友连接你的服务器？</h2>
+<p>众所周知的是，当在你自己的电脑上启动服务器客户端之后，只要在游戏中输入 127.0.0.1:25565 这个 IP 就可以进入游戏了。</p>
+<p>而当舍友需要加入游戏时，你便需要知道你的电脑在内网下的 IP 地址。很简单，我们只要打开 <strong>设置-&gt;网络和Internet-&gt;以太网/WLAN</strong>，找到 IPv4 地址便能看到内网下的 IP 了。</p>
+<figure data-type="image" tabindex="1"><img src="https://D3nesyan.github.io/post-images/1693319407024.jpg" alt="" loading="lazy"></figure>
+<p>然后舍友的 IP 就是你内网IP:25565。如图中例子，就是 192.168.5.141:25565</p>
+<p>当然，也许你安装了 geysermc 插件来兼容 Bedrock 版本的 Minecraft, 只需要将端口号换成 19132 就行了。</p>
+<h2 id="放假了我舍友想在家里陪我玩怎么办">放假了，我舍友想在家里陪我玩，怎么办？</h2>
+<p>想办法公网 <strong>IPv4 地址</strong> 或者 <strong>使用第三方 FRP 软件(e.g. SakuraFrp)</strong>。详细方法请见 Bing。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ArrowOS lavender flash tutorial]]></title>
+        <id>https://D3nesyan.github.io/post/arrowos-lavender-flash-tutorial/</id>
+        <link href="https://D3nesyan.github.io/post/arrowos-lavender-flash-tutorial/">
+        </link>
+        <updated>2023-08-29T02:47:15.000Z</updated>
+        <summary type="html"><![CDATA[<p>We now have new 4.19 baseline, <strong>retrofitted dynamic partitions and erofs</strong> support. These make the installation process a bit different compare to normal 4.4/4.19 roms. That's why I specially made this tutorial.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>We now have new 4.19 baseline, <strong>retrofitted dynamic partitions and erofs</strong> support. These make the installation process a bit different compare to normal 4.4/4.19 roms. That's why I specially made this tutorial.</p>
+<!-- more -->
+<hr>
+<h2 id="before-flashing">Before flashing</h2>
+<p>Make sure you have a PC for following steps. Download latest <a href="https://developer.android.com/tools/releases/platform-tools">platform_tools</a> from google official site. Also, download rom package from the <a href="https://arrowos.net/download">ArrowOS official download site</a>. Do backups if needed.</p>
+<h1 id="clean-flash">Clean flash</h1>
+<h2 id="step-1">Step 1</h2>
+<p>Download TWRP recovery which support erofs and dynamic partitions from <a href="https://sourceforge.net/projects/lc-dev/files/lavender/TWRP-recovery-erofs-dynamic-partitions-230713.img/download">HERE</a> and put the recovery image and rom package into the directory of your platform-tools.(Note that recovery haven't support decrypt yet)</p>
+<p>Connect your phone with your PC, using command</p>
+<pre><code class="language-bash">$ fastboot flash recovery &lt;recovery filename&gt;.img
+</code></pre>
+<p>to flash the recovery into your phone. After it has done, press <strong>Power Button &amp; Volume +</strong> to reboot into the recovery.</p>
+<h2 id="step-2">Step 2</h2>
+<p><strong>Format data</strong>, then enter <strong>Advanced Wipe</strong>, change <strong>Data &amp; Cache</strong> partitions file system to <strong>F2FS</strong>.</p>
+<p><strong>DONT FORMAT SYSTEM PARTITION TO F2FS!</strong></p>
+<p>Then go to <strong>Advanced-&gt;ADB Sideload</strong>, flash rom with adb sideload command directly.</p>
+<pre><code class="language-bash">$ adb sideload &lt;rom package filename&gt;.zip
+</code></pre>
+<p>Installation script will change it to dynamic partitions so we don't need to do extra steps here.</p>
+<p><a href="https://twrp.me/faq/ADBSideload.html">In case if you don't know what is adb sideload and how to use it</a></p>
+<p><strong>Or</strong> if you have a SD card, you can put the rom package into the SD card and flash it in TWRP directly instead of using adb sideload.</p>
+<h2 id="step-3">Step 3</h2>
+<p>Reboot your phone to the system and enjoy!</p>
+<h1 id="dirty-flash">Dirty flash</h1>
+<p>Just flash the new rom package directly</p>
+<h1 id="back-to-stock-partitions">Back to stock partitions</h1>
+<p>It is easy to get back. Format <strong>system, vendor and cust</strong> partitions and then you can flash any roms without retrofitted dynamic partitions.</p>
+<p>If you really don't know how to do, go flash miui stock <strong>via fastboot(miflash)</strong>.</p>
+<h1 id="advanced">Advanced</h1>
+<ul>
+<li><a href="https://sourceforge.net/projects/lc-dev/files/lavender/ksu-arrowos-13.1-lavender-230801-boot.img/download">KernelSU boot image</a></li>
+<li><a href="https://sourceforge.net/projects/lc-dev/files/lavender/ArrowOS-13.1-recovery-lavender-230801.img/download">ArrowOS recovery</a></li>
+</ul>
+]]></content>
+    </entry>
+</feed>
