@@ -1286,7 +1286,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #444fa6;
+    background: #a3ffa4;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2766,5 +2766,28 @@ header.header {
   }
   .comments {
     padding: 10px 12px;
+  }
+}
+.fireworks {
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+}
+.site-subtitle {
+  min-height: 1.2em; /* Keep minimum height to prevent page jump during typing */
+  position: relative;
+}
+.site-subtitle::after {
+  content: "|";
+  position: relative;
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
